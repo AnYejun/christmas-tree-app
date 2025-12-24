@@ -3,6 +3,7 @@ import html2canvas from 'html2canvas';
 import QuizOverlay from './components/QuizOverlay';
 import TreeScene from './components/TreeScene';
 import PosterOverlay from './components/PosterOverlay';
+import TreeDescription from './components/TreeDescription';
 import './index.css';
 
 function App() {
@@ -114,6 +115,15 @@ function App() {
 
           {/* Poster overlay for screenshot */}
           <PosterOverlay params={treeParams} visible={isCapturing} />
+
+          {/* Tree description - shown when not capturing */}
+          {!isCapturing && (
+            <TreeDescription
+              color={treeParams.color}
+              density={treeParams.density}
+              starBrightness={treeParams.starBrightness}
+            />
+          )}
 
           {/* Buttons - hidden during capture */}
           {!isCapturing && (

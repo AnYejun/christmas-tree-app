@@ -2,18 +2,33 @@ import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-// Tree color themes - unified colors per tree type
+// Tree color themes - unified colors per tree type (16 unique themes!)
 const treeColorThemes = [
-    { name: 'forest', base: [0.15, 0.5, 0.2], accent: [0.1, 0.6, 0.25], ornaments: ['#ff4444', '#ffd700', '#ffffff'] },
-    { name: 'pink', base: [0.95, 0.45, 0.65], accent: [1.0, 0.55, 0.7], ornaments: ['#ffffff', '#ffd700', '#ff69b4'] },
-    { name: 'blue', base: [0.3, 0.5, 0.85], accent: [0.4, 0.6, 0.9], ornaments: ['#ffffff', '#c0c0c0', '#87ceeb'] },
-    { name: 'purple', base: [0.6, 0.35, 0.75], accent: [0.7, 0.45, 0.85], ornaments: ['#ffd700', '#ffffff', '#dda0dd'] },
-    { name: 'mint', base: [0.35, 0.75, 0.65], accent: [0.45, 0.85, 0.7], ornaments: ['#ffffff', '#ffd700', '#98fb98'] },
-    { name: 'orange', base: [0.95, 0.55, 0.25], accent: [1.0, 0.65, 0.35], ornaments: ['#ffffff', '#ffd700', '#ff6347'] },
-    { name: 'red', base: [0.85, 0.2, 0.25], accent: [0.95, 0.3, 0.3], ornaments: ['#ffd700', '#ffffff', '#ff4500'] },
-    { name: 'white', base: [0.9, 0.92, 0.95], accent: [0.95, 0.97, 1.0], ornaments: ['#ffd700', '#c0c0c0', '#87ceeb'] },
-    { name: 'gold', base: [0.85, 0.7, 0.3], accent: [0.95, 0.8, 0.4], ornaments: ['#ffffff', '#ff4444', '#ffd700'] },
-    { name: 'lavender', base: [0.7, 0.6, 0.85], accent: [0.8, 0.7, 0.95], ornaments: ['#ffffff', '#ffd700', '#dda0dd'] },
+    // Classic styles
+    { name: 'forest', base: [0.15, 0.5, 0.2], accent: [0.1, 0.6, 0.25], ornaments: ['#ff4444', '#ffd700', '#ffffff'], desc: '클래식한 초록 트리' },
+    { name: 'red', base: [0.85, 0.2, 0.25], accent: [0.95, 0.3, 0.3], ornaments: ['#ffd700', '#ffffff', '#ff4500'], desc: '정열의 레드 트리' },
+    { name: 'gold', base: [0.85, 0.7, 0.3], accent: [0.95, 0.8, 0.4], ornaments: ['#ffffff', '#ff4444', '#ffd700'], desc: '화려한 골드 트리' },
+
+    // Elegant styles
+    { name: 'silver', base: [0.75, 0.78, 0.82], accent: [0.85, 0.88, 0.92], ornaments: ['#c0c0c0', '#ffffff', '#87ceeb'], desc: '우아한 실버 트리' },
+    { name: 'white', base: [0.9, 0.92, 0.95], accent: [0.95, 0.97, 1.0], ornaments: ['#ffd700', '#c0c0c0', '#87ceeb'], desc: '순수한 화이트 트리' },
+    { name: 'champagne', base: [0.96, 0.91, 0.82], accent: [0.98, 0.94, 0.86], ornaments: ['#ffd700', '#ffffff', '#daa520'], desc: '고급스러운 샴페인 트리' },
+
+    // Romantic styles
+    { name: 'pink', base: [0.95, 0.45, 0.65], accent: [1.0, 0.55, 0.7], ornaments: ['#ffffff', '#ffd700', '#ff69b4'], desc: '사랑스러운 핑크 트리' },
+    { name: 'rosegold', base: [0.92, 0.65, 0.6], accent: [0.96, 0.72, 0.68], ornaments: ['#ffd700', '#ffffff', '#ffb6c1'], desc: '로맨틱 로즈골드 트리' },
+    { name: 'lavender', base: [0.7, 0.6, 0.85], accent: [0.8, 0.7, 0.95], ornaments: ['#ffffff', '#ffd700', '#dda0dd'], desc: '몽환적인 라벤더 트리' },
+
+    // Cool styles
+    { name: 'blue', base: [0.3, 0.5, 0.85], accent: [0.4, 0.6, 0.9], ornaments: ['#ffffff', '#c0c0c0', '#87ceeb'], desc: '차분한 블루 트리' },
+    { name: 'mint', base: [0.35, 0.75, 0.65], accent: [0.45, 0.85, 0.7], ornaments: ['#ffffff', '#ffd700', '#98fb98'], desc: '상쾌한 민트 트리' },
+    { name: 'aurora', base: [0.3, 0.7, 0.65], accent: [0.5, 0.4, 0.8], ornaments: ['#00ff88', '#ff69b4', '#87ceeb'], desc: '신비로운 오로라 트리' },
+
+    // Vibrant styles
+    { name: 'purple', base: [0.6, 0.35, 0.75], accent: [0.7, 0.45, 0.85], ornaments: ['#ffd700', '#ffffff', '#dda0dd'], desc: '신비한 퍼플 트리' },
+    { name: 'orange', base: [0.95, 0.55, 0.25], accent: [1.0, 0.65, 0.35], ornaments: ['#ffffff', '#ffd700', '#ff6347'], desc: '따뜻한 오렌지 트리' },
+    { name: 'candycane', base: [0.95, 0.3, 0.35], accent: [1.0, 1.0, 1.0], ornaments: ['#ff0000', '#ffffff', '#ff69b4'], desc: '달콤한 캔디케인 트리' },
+    { name: 'emerald', base: [0.15, 0.65, 0.45], accent: [0.2, 0.75, 0.5], ornaments: ['#ffd700', '#ffffff', '#50c878'], desc: '고귀한 에메랄드 트리' },
 ];
 
 export default function ParticleTree({ params }) {
@@ -24,8 +39,8 @@ export default function ParticleTree({ params }) {
 
     const { color, speed, density, starBrightness } = params;
 
-    // Select theme based on color quiz answer
-    const themeIndex = Math.floor(color / 36) % treeColorThemes.length;
+    // Select theme based on color quiz answer (16 themes)
+    const themeIndex = Math.floor(color / 20) % treeColorThemes.length;
     const theme = treeColorThemes[themeIndex];
 
     // Unified color tree - taller shape (height multiplier 1.3)
