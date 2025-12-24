@@ -117,9 +117,11 @@ body::before {
   -webkit-user-select: none;
 }
 
-.screenshot-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 40px rgba(255, 71, 87, 0.6);
+@media (hover: hover) {
+  .screenshot-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 40px rgba(255, 71, 87, 0.6);
+  }
 }
 
 .screenshot-btn:active {
@@ -143,9 +145,11 @@ body::before {
   -webkit-user-select: none;
 }
 
-.restart-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: var(--text-primary);
+@media (hover: hover) {
+  .restart-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-primary);
+  }
 }
 
 .restart-btn:active {

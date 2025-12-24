@@ -81,7 +81,7 @@ function App() {
           {/* Title when not capturing */}
           {!isCapturing && (
             <div className="title-overlay">
-              <h1>✨ 나만의 크리스마스 트리 ✨</h1>
+              <h1>✨ 나만의 2025 크리스마스 트리 ✨</h1>
               <p className="subtitle">터치 또는 드래그로 트리를 돌려보세요</p>
             </div>
           )}

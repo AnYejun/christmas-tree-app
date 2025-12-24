@@ -119,10 +119,12 @@
     -webkit-user-select: none;
 }
 
-.option-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 165, 2, 0.5);
-    transform: translateX(5px);
+@media (hover: hover) {
+    .option-btn:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 165, 2, 0.5);
+        transform: translateX(5px);
+    }
 }
 
 .option-btn:active {

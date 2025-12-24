@@ -115,7 +115,7 @@ export default function QuizOverlay({ onComplete }) {
       <div className="quiz-container">
         <div className="quiz-header">
           <span className="emoji">{question.emoji}</span>
-          <h1>나만의 크리스마스 트리 만들기</h1>
+          <h1>나만의 2025 크리스마스 트리 만들기</h1>
         </div>
 
         <div className="progress-bar">
