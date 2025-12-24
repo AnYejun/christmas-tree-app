@@ -110,10 +110,13 @@
     font-size: 1rem;
     text-align: left;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
     display: flex;
     align-items: center;
     gap: 12px;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .option-btn:hover {
@@ -123,7 +126,9 @@
 }
 
 .option-btn:active {
-    transform: translateX(5px) scale(0.98);
+    transform: translateX(5px) scale(0.97);
+    background: rgba(255, 165, 2, 0.2);
+    border-color: rgba(255, 165, 2, 0.7);
 }
 
 .option-emoji {

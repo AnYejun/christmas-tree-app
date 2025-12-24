@@ -23,9 +23,9 @@ export default function TreeScene({ initialParams, onGlReady }) {
 
     return (
         <Canvas
-            camera={{ position: [0, 0.3, 4.5], fov: 50 }}
+            camera={{ position: [0, 0.5, 6], fov: 50 }}
             gl={{ preserveDrawingBuffer: true, antialias: true }}
-            style={{ background: 'transparent' }}
+            style={{ background: 'transparent', touchAction: 'none' }}
         >
             <ScreenshotHandler onGlReady={onGlReady} />
             <ambientLight intensity={0.1} color="#e8e8ff" />
@@ -44,9 +44,12 @@ export default function TreeScene({ initialParams, onGlReady }) {
             <OrbitControls
                 enablePan={false}
                 enableZoom={true}
-                minDistance={3}
-                maxDistance={8}
-                target={[0, 0.3, 0]}
+                minDistance={4}
+                maxDistance={10}
+                target={[0, 0.5, 0]}
+                enableDamping={true}
+                dampingFactor={0.05}
+                rotateSpeed={0.8}
                 touches={{ ONE: 1, TWO: 2 }}
             />
         </Canvas>
