@@ -1,29 +1,27 @@
 .tree-description {
     position: fixed;
-    bottom: 90px;
+    bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 100;
+    z-index: 90;
     text-align: center;
-    padding: 16px 24px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 16px;
-    backdrop-filter: blur(12px);
-    max-width: 320px;
-    width: 90%;
-    animation: slideUp 0.5s ease-out;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    max-width: 280px;
+    width: 85%;
+    animation: fadeIn 0.4s ease-out;
 }
 
-@keyframes slideUp {
+@keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateX(-50%) translateY(20px);
     }
 
     to {
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
     }
 }
 
@@ -31,44 +29,45 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin-bottom: 8px;
+    gap: 6px;
+    margin-bottom: 4px;
 }
 
 .tree-emoji {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
 }
 
 .tree-name {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: #fff;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
 }
 
 .tree-detail {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.75);
-    line-height: 1.5;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.4;
     margin: 0;
 }
 
 /* Mobile adjustments */
 @media (max-width: 480px) {
     .tree-description {
-        bottom: 80px;
-        padding: 12px 16px;
+        bottom: 12px;
+        padding: 8px 12px;
+        max-width: 260px;
     }
 
     .tree-emoji {
-        font-size: 1.3rem;
-    }
-
-    .tree-name {
         font-size: 1rem;
     }
 
+    .tree-name {
+        font-size: 0.85rem;
+    }
+
     .tree-detail {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 }

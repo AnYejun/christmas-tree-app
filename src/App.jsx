@@ -138,6 +138,9 @@ function App() {
           )}
         </>
       )}
+
+      {/* Branding */}
+      <span className="branding">codex of anyed christmas project</span>
     </div>
   );
 }

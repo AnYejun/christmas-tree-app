@@ -1,35 +1,44 @@
 import { forwardRef } from 'react';
 import './PosterOverlay.css';
 
+// Tree themes - must match ParticleTree.jsx themes
+const treeThemes = [
+    { name: 'forest', title: '클래식한 초록 트리', emoji: '🌲' },
+    { name: 'red', title: '정열의 레드 트리', emoji: '❤️' },
+    { name: 'gold', title: '화려한 골드 트리', emoji: '✨' },
+    { name: 'silver', title: '우아한 실버 트리', emoji: '🤍' },
+    { name: 'white', title: '순수한 화이트 트리', emoji: '🕊️' },
+    { name: 'champagne', title: '고급스러운 샴페인 트리', emoji: '🥂' },
+    { name: 'pink', title: '사랑스러운 핑크 트리', emoji: '💕' },
+    { name: 'rosegold', title: '로맨틱 로즈골드 트리', emoji: '🌹' },
+    { name: 'lavender', title: '몽환적인 라벤더 트리', emoji: '💜' },
+    { name: 'blue', title: '차분한 블루 트리', emoji: '💙' },
+    { name: 'mint', title: '상쾌한 민트 트리', emoji: '🌿' },
+    { name: 'aurora', title: '신비로운 오로라 트리', emoji: '🌌' },
+    { name: 'purple', title: '신비한 퍼플 트리', emoji: '👑' },
+    { name: 'orange', title: '따뜻한 오렌지 트리', emoji: '🧡' },
+    { name: 'candycane', title: '달콤한 캔디케인 트리', emoji: '🍭' },
+    { name: 'emerald', title: '고귀한 에메랄드 트리', emoji: '💎' },
+];
+
 // Tree personality interpretations based on quiz results
 const getTreePersonality = (params) => {
-    const { color, speed, density, starBrightness } = params;
+    const { color, density, starBrightness } = params;
 
+    // Get theme based on color (must match ParticleTree logic)
+    const themeIndex = Math.floor(color / 20) % treeThemes.length;
+    const theme = treeThemes[themeIndex];
+
+    let title = `${theme.emoji} ${theme.title}`;
     let personality = '';
-    let title = '';
-
-    // Based on color (activity preference)
-    if (color < 100) {
-        title = '따뜻한 마음의 트리';
-        personality = '따뜻한 벽난로 앞에서 소중한 사람들과 조용한 시간을 보내고 싶은 당신';
-    } else if (color < 200) {
-        title = '영화같은 트리';
-        personality = '아늑한 공간에서 나만의 시간을 즐기며 여유를 찾는 당신';
-    } else if (color < 250) {
-        title = '낭만의 트리';
-        personality = '겨울 풍경 속에서 낭만을 찾고 싶어하는 감성적인 당신';
-    } else {
-        title = '축제의 트리';
-        personality = '사람들과 함께 즐거운 에너지를 나누고 싶은 당신';
-    }
 
     // Add decoration style description
     if (starBrightness > 1.5) {
-        personality += '의 트리는 화려하게 빛나고 있어요 ✨';
+        personality = '화려하게 빛나는 장식이 돋보이는 당신의 트리 ✨';
     } else if (starBrightness > 1.0) {
-        personality += '의 트리는 고급스럽게 빛나고 있어요 🌟';
+        personality = '고급스럽고 우아한 빛이 감도는 당신의 트리 🌟';
     } else {
-        personality += '의 트리는 은은하게 빛나고 있어요 💫';
+        personality = '은은하고 따뜻한 빛이 감도는 당신의 트리 💫';
     }
 
     // Snow/weather description

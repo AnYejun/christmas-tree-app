@@ -83,7 +83,7 @@ body::before {
 /* Button Container */
 .button-container {
   position: fixed;
-  bottom: 30px;
+  bottom: 70px;
   left: 0;
   right: 0;
   z-index: 100;
@@ -198,7 +198,7 @@ body::before {
   }
 
   .button-container {
-    bottom: 20px;
+    bottom: 60px;
     padding: 0 20px;
     flex-direction: row-reverse;
   }
@@ -232,5 +232,26 @@ body::before {
   .restart-btn {
     padding: 8px 12px;
     font-size: 11px;
+  }
+}
+
+/* Branding Watermark */
+.branding {
+  position: fixed;
+  bottom: 8px;
+  right: 12px;
+  z-index: 50;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.5px;
+  font-weight: 300;
+  pointer-events: none;
+}
+
+@media (max-width: 480px) {
+  .branding {
+    font-size: 0.55rem;
+    right: 8px;
+    bottom: 6px;
   }
 }
