@@ -1,16 +1,16 @@
 .tree-description {
     position: fixed;
-    bottom: 15px;
+    bottom: 35px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 90;
     text-align: center;
-    padding: 10px 16px;
+    padding: 8px 14px;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    border-radius: 10px;
     backdrop-filter: blur(10px);
-    max-width: 280px;
+    max-width: 260px;
     width: 85%;
     animation: fadeIn 0.4s ease-out;
 }
@@ -29,45 +29,53 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    margin-bottom: 4px;
+    gap: 5px;
+    margin-bottom: 3px;
 }
 
 .tree-emoji {
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .tree-name {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: #fff;
     text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
 }
 
 .tree-detail {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.65);
-    line-height: 1.4;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.3;
     margin: 0;
 }
 
 /* Mobile adjustments */
+@media (max-width: 768px) {
+    .tree-description {
+        bottom: 32px;
+        padding: 7px 12px;
+        max-width: 240px;
+    }
+}
+
 @media (max-width: 480px) {
     .tree-description {
-        bottom: 12px;
-        padding: 8px 12px;
-        max-width: 260px;
+        bottom: 30px;
+        padding: 6px 10px;
+        max-width: 220px;
     }
 
     .tree-emoji {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .tree-name {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
     }
 
     .tree-detail {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
     }
 }

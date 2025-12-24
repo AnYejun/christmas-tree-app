@@ -132,7 +132,7 @@ function App() {
                 📷 트리 저장하기
               </button>
               <button className="restart-btn" onClick={handleRestart}>
-                🔄 다시 시작
+                다시 시작
               </button>
             </div>
           )}
