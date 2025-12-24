@@ -44,13 +44,14 @@ export default function TreeScene({ initialParams, onGlReady }) {
             <OrbitControls
                 enablePan={false}
                 enableZoom={true}
+                enableRotate={true}
                 minDistance={4}
                 maxDistance={10}
                 target={[0, 0.5, 0]}
                 enableDamping={true}
                 dampingFactor={0.05}
                 rotateSpeed={0.8}
-                touches={{ ONE: 1, TWO: 2 }}
+                touches={{ ONE: 0, TWO: 2 }}
             />
         </Canvas>
     );
