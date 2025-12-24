@@ -128,11 +128,11 @@ function App() {
           {/* Buttons - hidden during capture */}
           {!isCapturing && (
             <div className="button-container">
-              <button className="screenshot-btn" onClick={handleScreenshot}>
-                📷 저장하기
-              </button>
               <button className="restart-btn" onClick={handleRestart}>
                 다시 시작
+              </button>
+              <button className="screenshot-btn" onClick={handleScreenshot}>
+                📷 저장하기
               </button>
             </div>
           )}
