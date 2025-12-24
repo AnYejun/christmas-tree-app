@@ -23,7 +23,7 @@ export default function TreeScene({ initialParams, onGlReady }) {
 
     return (
         <Canvas
-            camera={{ position: [0, 0.5, 6], fov: 50 }}
+            camera={{ position: [0, 0.8, 10], fov: 50 }}
             gl={{ preserveDrawingBuffer: true, antialias: true }}
             style={{ background: 'transparent', touchAction: 'none' }}
         >

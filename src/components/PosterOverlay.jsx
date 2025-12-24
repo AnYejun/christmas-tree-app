@@ -89,7 +89,7 @@ const PosterOverlay = forwardRef(({ params, visible }, ref) => {
             </div>
 
             {/* Year */}
-            <p className="poster-year">2024 Christmas</p>
+            <p className="poster-year">2025 Christmas</p>
         </div>
     );
 });
