@@ -39,17 +39,36 @@ function App() {
           logging: false,
         });
 
-        const link = document.createElement('a');
-        link.download = `my-christmas-tree-${Date.now()}.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
+        // Convert canvas to blob for sharing
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        const file = new File([blob], `my-2025-christmas-tree.png`, { type: 'image/png' });
+
+        // Try Web Share API first (works in Instagram, etc.)
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              files: [file],
+              title: '나만의 2025 크리스마스 트리 🎄',
+              text: '나만의 크리스마스 트리를 만들어봤어요!',
+            });
+          } catch (shareError) {
+            // User cancelled or share failed, fall back to download
+            if (shareError.name !== 'AbortError') {
+              downloadImage(canvas);
+            }
+          }
+        } else {
+          // Fallback: direct download
+          downloadImage(canvas);
+        }
       }
     } catch (error) {
       console.error('Screenshot failed:', error);
+      // Fallback to WebGL screenshot
       if (glRef.current) {
         const dataUrl = glRef.current.domElement.toDataURL('image/png');
         const link = document.createElement('a');
-        link.download = `my-christmas-tree-${Date.now()}.png`;
+        link.download = `my-2025-christmas-tree.png`;
         link.href = dataUrl;
         link.click();
       }
@@ -58,6 +77,13 @@ function App() {
     // Hide poster and show buttons after short delay
     setTimeout(() => setIsCapturing(false), 600);
   }, []);
+
+  const downloadImage = (canvas) => {
+    const link = document.createElement('a');
+    link.download = `my-2025-christmas-tree.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  };
 
   const handleGlReady = (gl) => {
     glRef.current = gl;
