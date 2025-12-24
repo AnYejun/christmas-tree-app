@@ -129,7 +129,7 @@ function App() {
           {!isCapturing && (
             <div className="button-container">
               <button className="screenshot-btn" onClick={handleScreenshot}>
-                📷 트리 저장하기
+                📷 저장하기
               </button>
               <button className="restart-btn" onClick={handleRestart}>
                 다시 시작
@@ -140,7 +140,7 @@ function App() {
       )}
 
       {/* Branding */}
-      <span className="branding">codex of anyed christmas project</span>
+      <span className="branding">codex.of.anyed</span>
     </div>
   );
 }
